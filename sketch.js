@@ -1,4 +1,5 @@
 let mic;
+let micLevel;
 let x1;
 let x2;
 let y1;
@@ -39,6 +40,7 @@ function talkingcat(){
 }
 function draw() {
   if(Calibritalk){
+    micLevel=mic.getLevel(0.9);
     background(150);
     counter = counter + deltaTime;
     if (blink && counter > 300) {
