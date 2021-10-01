@@ -1,4 +1,5 @@
 let mic;
+let micLevel;
 let x1;
 let x2;
 let y1;
@@ -12,7 +13,7 @@ let value = 50;
 let Calibritalk=false;
 function setup() {
   createCanvas(400, 400);
-  createButton("Let's Go!").mousePressed(talkingcat);
+  createButton("Start").mousePressed(talkingcat);
 //  mic = new p5.AudioIn();
 //  mic.start();
 
@@ -35,10 +36,11 @@ function setup() {
 function talkingcat(){
   mic = new p5.AudioIn();
   mic.start();
-  Calibritalk=true;
+  Calibritalk = true;
 }
 function draw() {
   if(Calibritalk){
+    micLevel=mic.getLevel(0.9);
     background(150);
     counter = counter + deltaTime;
     if (blink && counter > 300) {
