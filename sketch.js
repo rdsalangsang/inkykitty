@@ -9,10 +9,12 @@ let counter = 0;
 let openEye = 80;
 let blink = false;
 let value = 50;
+let Calibritalk=false;
 function setup() {
   createCanvas(400, 400);
-  mic = new p5.AudioIn();
-  mic.start();
+  createButton("Let's Go!").mousePressed(talkingcat);
+//  mic = new p5.AudioIn();
+//  mic.start();
 
   star1 = new stars(30, 120, 4, 8, 5);
   star2 = new stars(360, 200, 9, 18, 5);
@@ -30,47 +32,53 @@ function setup() {
   g = random(255);
   b = random(255);
 }
-
+function talkingcat(){
+  mic = new p5.AudioIn();
+  mic.start();
+  Calibritalk=true;
+}
 function draw() {
-  background(150);
-  counter = counter + deltaTime;
-  if (blink && counter > 300) {
-    openEye = 80;
-    blink = false;
-    counter = 0;
-  } else if (counter > 2000) {
-    openEye = 0;
-    blink = true;
-    counter = 0;
+  if(Calibritalk){
+    background(150);
+    counter = counter + deltaTime;
+    if (blink && counter > 300) {
+      openEye = 80;
+      blink = false;
+      counter = 0;
+    } else if (counter > 2000) {
+      openEye = 0;
+      blink = true;
+      counter = 0;
+    }
+    x1 = map(mouseX, 0, width, 145, 160, true);
+    x2 = map(mouseX, 0, width, 235, 250, true);
+    y1 = map(mouseY, 0, height, 175, 208, true);
+    y2 = map(mouseY, 0, height, 175, 208, true);
+    ///ooo stars
+    star1.display();
+    star2.display();
+    star3.display();
+    star4.display();
+    star5.display();
+    star6.display();
+    star7.display();
+    star8.display();
+    star9.display();
+    star10.display();
+    star11.display();
+
+    ///stationary
+    body();
+    head();
+
+    //face
+    mouth();
+    eye1();
+    eye2();
+    pupil1(9, 9);
+    pupil2(9, 9);
+    nose();
   }
-  x1 = map(mouseX, 0, width, 145, 160, true);
-  x2 = map(mouseX, 0, width, 235, 250, true);
-  y1 = map(mouseY, 0, height, 175, 208, true);
-  y2 = map(mouseY, 0, height, 175, 208, true);
-  ///ooo stars
-  star1.display();
-  star2.display();
-  star3.display();
-  star4.display();
-  star5.display();
-  star6.display();
-  star7.display();
-  star8.display();
-  star9.display();
-  star10.display();
-  star11.display();
-
-  ///stationary
-  body();
-  head();
-
-  //face
-  mouth();
-  eye1();
-  eye2();
-  pupil1(9, 9);
-  pupil2(9, 9);
-  nose();
 
   function body() {
     push();
