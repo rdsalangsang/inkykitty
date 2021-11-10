@@ -72,9 +72,9 @@ function draw() {
     star10.display();
     star11.display();
 
-    ///stationary
-    body();
-    head();
+  ///stationary
+  body();
+  head();
 
     //face
     mouth();
