@@ -1,5 +1,5 @@
 let mic;
-let micLevel;
+let CalibriTalk = false;
 let x1;
 let x2;
 let y1;
@@ -10,12 +10,10 @@ let counter = 0;
 let openEye = 80;
 let blink = false;
 let value = 50;
-let Calibritalk=false;
+
 function setup() {
   createCanvas(400, 400);
-  createButton("Start").mousePressed(talkingcat);
-//  mic = new p5.AudioIn();
-//  mic.start();
+  createButton("Start").mousePressed(talkCat);
 
   star1 = new stars(30, 120, 4, 8, 5);
   star2 = new stars(360, 200, 9, 18, 5);
@@ -33,14 +31,19 @@ function setup() {
   g = random(255);
   b = random(255);
 }
-function talkingcat(){
+
+function talkCat() {
   mic = new p5.AudioIn();
   mic.start();
-  Calibritalk = true;
+  CalibriTalk=true;
 }
+
 function draw() {
-  if(Calibritalk){
-    micLevel=mic.getLevel(0.9);
+  if(CalibriTalk)
+  {
+    micLevel = mic.getLevel(1.0);
+
+
     background(150);
     counter = counter + deltaTime;
     if (blink && counter > 300) {
@@ -81,7 +84,7 @@ function draw() {
     pupil2(9, 9);
     nose();
   }
-
+}
   function body() {
     push();
     fill(250);
@@ -189,6 +192,7 @@ function draw() {
     ellipse(x2, y2, width / xpos, openEye / 1.8);
     pop();
   }
+
   function nose() {
     push();
     fill(0);
@@ -204,10 +208,11 @@ function draw() {
     );
     pop();
   }
-}
+
+
 function mouseClicked() {
   if (value === 50) {
-    value=color(random(255),random(255),random(255))
+    value = color(random(255), random(255), random(255))
   } else {
     value = 50;
   }
